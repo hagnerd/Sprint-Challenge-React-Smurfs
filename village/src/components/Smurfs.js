@@ -8,10 +8,10 @@ class Smurfs extends Component {
     return (
       <div className="Smurfs">
         <h1>Smurf Village</h1>
-        <ul>
+        <ul className="list">
           {this.props.smurfs.map(smurf => {
             return (
-              <React.Fragment key={smurf.id}>
+              <div className="card" key={smurf.id}>
                 <Link to={`/smurf/${smurf.id}`}>
                   <Smurf
                     name={smurf.name}
@@ -26,7 +26,7 @@ class Smurfs extends Component {
                 <button>
                   <Link to={`/smurf/${smurf.id}/edit`}>Edit Smurf</Link>
                 </button>
-              </React.Fragment>
+              </div>
             );
           })}
         </ul>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Smurf from "./Smurf";
 
-export default function SmurfPage({ smurf, deleteSmurf }) {
+export default function SmurfPage({ smurf, deleteSmurf, history }) {
   return (
     <React.Fragment>
       <Smurf
@@ -11,7 +11,9 @@ export default function SmurfPage({ smurf, deleteSmurf }) {
         age={smurf.age}
         height={smurf.height}
       />
-      <button onClick={() => deleteSmurf(smurf.id)}>Delete Smurf</button>
+      <button onClick={() => deleteSmurf(smurf.id, history.push("/"))}>
+        Delete Smurf
+      </button>
       <button>
         <Link to={`/smurf/${smurf.id}/edit`}>Edit Smurf</Link>
       </button>

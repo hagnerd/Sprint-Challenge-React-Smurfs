@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Route, NavLink } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import "./App.css";
 import SmurfForm from "./components/SmurfForm";
 import Smurfs from "./components/Smurfs";
 import SmurfPage from "./components/SmurfPage";
+import Navigation from "./components/Navigation";
 
 class App extends Component {
   constructor(props) {
@@ -32,10 +33,15 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  deleteSmurf = id => {
+  deleteSmurf = (id, redirect) => {
     axios
       .delete(`http://localhost:3333/smurfs/${id}`)
       .then(({ data: smurfs }) => this.setState({ smurfs }))
+      .then(() => {
+        if (redirect !== undefined && typeof redirect === "function") {
+          redirect();
+        }
+      })
       .catch(err => console.log(err));
   };
 
@@ -50,27 +56,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav>
-          <ul>
-            <li>
-              <NavLink
-                activeStyle={{ color: "purple", fontWeight: "bold" }}
-                exact
-                to="/"
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                activeStyle={{ color: "purple", fontWeight: "bold" }}
-                to="/smurf-form"
-              >
-                Create Smurf
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
+        <Navigation />
         <Route
           path="/"
           exact
@@ -97,7 +83,13 @@ class App extends Component {
               smurf => smurf.id === Number(props.match.params.id)
             );
 
-            return <SmurfPage deleteSmurf={this.deleteSmurf} smurf={smurf} />;
+            return (
+              <SmurfPage
+                deleteSmurf={this.deleteSmurf}
+                smurf={smurf}
+                {...props}
+              />
+            );
           }}
         />
 
