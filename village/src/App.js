@@ -23,14 +23,26 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  addSmurf = smurfs => {
-    this.setState({ smurfs });
+  addSmurf = (smurfs, redirect) => {
+    axios
+      .post("http://localhost:3333/smurfs", smurfs)
+      .then(({ data: smurfs }) => this.setState({ smurfs }))
+      .then(() => redirect("/"))
+      .catch(err => console.log(err));
   };
 
   deleteSmurf = id => {
     axios
       .delete(`http://localhost:3333/smurfs/${id}`)
       .then(({ data: smurfs }) => this.setState({ smurfs }))
+      .catch(err => console.log(err));
+  };
+
+  updateSmurf = (smurf, redirect, id) => {
+    axios
+      .put(`http://localhost:3333/smurfs/${id}`, smurf)
+      .then(({ data: smurfs }) => this.setState({ smurfs }))
+      .then(() => redirect("/"))
       .catch(err => console.log(err));
   };
 
@@ -71,7 +83,30 @@ class App extends Component {
         />
         <Route
           path="/smurf-form"
-          render={props => <SmurfForm addSmurf={this.addSmurf} {...props} />}
+          render={props => (
+            <SmurfForm handleSubmit={this.addSmurf} {...props} />
+          )}
+        />
+
+        <Route
+          path="/smurf/:id/edit"
+          exact
+          render={props => {
+            const smurf = this.state.smurfs.find(
+              smurf => smurf.id === Number(props.match.params.id)
+            );
+
+            return (
+              <SmurfForm
+                handleSubmit={this.updateSmurf}
+                name={smurf.name}
+                age={smurf.age}
+                height={smurf.age}
+                id={props.match.params.id}
+                {...props}
+              />
+            );
+          }}
         />
       </div>
     );
