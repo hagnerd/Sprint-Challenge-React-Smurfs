@@ -17,16 +17,19 @@ class App extends Component {
     axios
       .get("http://localhost:3333/smurfs")
       .then(({ data: smurfs }) => {
-        console.log(smurfs);
         this.setState({ smurfs });
       })
       .catch(err => console.log(err));
   }
 
+  addSmurf = smurfs => {
+    this.setState({ smurfs });
+  };
+
   render() {
     return (
       <div className="App">
-        <SmurfForm />
+        <SmurfForm addSmurf={this.addSmurf} />
         <Smurfs smurfs={this.state.smurfs} />
       </div>
     );
