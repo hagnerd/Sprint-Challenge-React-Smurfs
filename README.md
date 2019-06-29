@@ -29,10 +29,46 @@ In this challenge, you will create a Single Page Application complete with Clien
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Explain the differences between `client-side routing` and `server-side routing`.
+
+    Server side routing receives a request, constructs the html and any other
+    assets, and sends them to the client. It requires the page to be loaded upon
+    every request.
+
+    Client side routing happens all inside of the browser on the client. Instead
+    of the page needing to be loaded on every request, we can instead choose
+    certain components and assets to be loaded based on the URL, and change what
+    is rendered/what needs to be fetched upon URL change, all without
+    re-downloaded the entire app/page.
+
 - [ ] What does HTTP stand for?
+
+    HTTP stands for HyperText Transfer Protocol. It's a specification for how to
+    format and parse requests on the internet. This common, agreed upon,
+    specification is what allows two websites to talk to each other in a common
+    language.
+
 - [ ] What does CRUD stand for?
+
+    CRUD stands for Create, Read, Update, and Delete, and is a rough mapping of
+    the HTTP verbs that were popularized from the rise of REST APIs, GET, PUT,
+    PATCH, DELETE, POST. It's what allows us to interact with REST APIs, and
+    databases, in an ergonomic way.
+
 - [ ] Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+    - The HTTP verb GET is the Read in CRUD
+    - The HTTP verb DELETE is the Delete in CRUD
+    - The HTTP verb POST is the Create in CRUD
+    - The HTTP verbs PUT/PATCH are the Updatat in CRUD. (PUT is a complete
+        replacement of the resource, and PATCH is a partial replacement of the
+        resource i.e. making a minor change)
+
 - [ ] Mention three tools we can use to make AJAX requests.
+
+    - XMLHttpRequest (what is essentially used under the hood to make AJAX
+        requests)
+    - The fetch (in browser) API
+    - Axios
 
 
 ## Project Set Up
