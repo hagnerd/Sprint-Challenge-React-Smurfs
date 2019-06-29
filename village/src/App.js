@@ -98,6 +98,7 @@ class App extends Component {
 
             return (
               <SmurfForm
+                submitBtnText={"Save Smurf"}
                 handleSubmit={this.updateSmurf}
                 name={smurf.name}
                 age={smurf.age}

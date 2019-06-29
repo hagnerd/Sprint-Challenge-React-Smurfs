@@ -14,7 +14,8 @@ class SmurfForm extends Component {
   static defaultProps = {
     name: "",
     age: "",
-    height: ""
+    height: "",
+    submitBtnText: "Add to the village"
   };
 
   addSmurf = event => {
@@ -61,7 +62,7 @@ class SmurfForm extends Component {
             value={this.state.height}
             name="height"
           />
-          <button type="submit">Add to the village</button>
+          <button type="submit">{this.props.submitBtnText}</button>
         </form>
       </div>
     );
