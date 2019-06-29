@@ -59,10 +59,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
     - The HTTP verb GET is the Read in CRUD
     - The HTTP verb DELETE is the Delete in CRUD
     - The HTTP verb POST is the Create in CRUD
-    - The HTTP verbs PUT/PATCH are the Updatat in CRUD. (PUT is a complete
-        replacement of the resource, and PATCH is a partial replacement of the
-        resource i.e. making a minor change)
-
+    - The HTTP verbs PUT/PATCH are the Update in CRUD. 
 - [ ] Mention three tools we can use to make AJAX requests.
 
     - XMLHttpRequest (what is essentially used under the hood to make AJAX
