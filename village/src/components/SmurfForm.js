@@ -4,26 +4,26 @@ import axios from "axios";
 class SmurfForm extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      name: "",
-      age: "",
-      height: ""
+      name: this.props.name,
+      age: this.props.age,
+      height: this.props.height
     };
   }
+
+  static defaultProps = {
+    name: "",
+    age: "",
+    height: ""
+  };
 
   addSmurf = event => {
     event.preventDefault();
     // add code to create the smurf using the api
-    axios
-      .post("http://localhost:3333/smurfs", {
-        name: this.state.name,
-        age: this.state.age,
-        height: this.state.height
-      })
-      .then(({ data: smurfs }) => {
-        this.props.addSmurf(smurfs);
-      })
-      .catch(err => console.log(err));
+    const { name, age, height } = this.state;
+
+    this.props.addSmurf({ name, age, height });
 
     this.setState({
       name: "",
